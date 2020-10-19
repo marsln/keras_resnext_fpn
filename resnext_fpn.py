@@ -40,6 +40,7 @@ def resnext_fpn(input_shape, nb_labels, depth=(3, 4, 6, 3), cardinality=32, widt
     stage_1 = x
 
     # filters are cardinality * width * 2 for each depth level
+    x = bottleneck_block(x, 128, cardinality, strides=2, weight_decay=weight_decay)
     for i in range(depth[0]):
         x = bottleneck_block(x, 128, cardinality, strides=1, weight_decay=weight_decay)
     stage_2 = x
